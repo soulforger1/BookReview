@@ -1,10 +1,13 @@
+import { Routes, Route } from "react-router-dom";
+import { HomePage, BookDetail } from "./pages";
 import "./styles/main.css";
 
 const App = () => {
   return (
-    <div className="App">
-      <h1 className="text-5xl font-bold underline">Hello world!</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/book-detail/*" element={<BookDetail />} />
+    </Routes>
   );
 };
 
