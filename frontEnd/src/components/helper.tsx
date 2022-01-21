@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-type HelperText = {
+type HelperTextType = {
   type?: "text" | "author" | "description" | "";
   content: string | string[];
   className?: any;
@@ -10,7 +10,7 @@ export const HelperText = ({
   type = "text",
   content,
   className,
-}: HelperText) => {
+}: HelperTextType) => {
   switch (type) {
     case "author":
       return (

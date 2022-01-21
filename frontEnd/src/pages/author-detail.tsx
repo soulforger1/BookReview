@@ -1,5 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Header, HelperText } from "../components";
 
 const Page = () => {
