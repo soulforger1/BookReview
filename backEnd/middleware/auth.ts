@@ -23,10 +23,10 @@ const tokenChecker = async (resolve?: any, parent?: any, args?: any, context?: a
 }
 
 const verifyToken = {
-    Query: {
-        books: tokenChecker,
-        book: tokenChecker
-    },
+    // Query: {
+    //     books: tokenChecker,
+    //     book: tokenChecker
+    // },
     Mutation: {
         addBook: tokenChecker,
         updateBook: tokenChecker,

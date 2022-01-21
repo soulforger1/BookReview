@@ -3,13 +3,28 @@ import { gql } from 'apollo-server-express';
 export const typeDefs = gql`
   scalar Date
 
-  type Book {
+  type Detail {
     title: String
-    author: String
-    image: String
-    createdAt: Date
-    like: Int
-    comments: [String]
+    author: [String]
+    edition: Int,
+    publisher: String
+    isbn: String
+    length: String
+    width: String
+    ages: String
+    format: String
+    category: String
+    date: String
+    pages: Int
+    height: String
+    weight: String
+  }
+
+  type Book {
+    price: String
+    description: [String]
+    poster: String
+    detail: Detail
   }
 
   type User {
@@ -19,12 +34,26 @@ export const typeDefs = gql`
     password: String!
     token: String
   }
+
+  type BookReview {
+    poster: String
+    id: String
+  }
+  type Author {
+    name: String
+    description: [String]
+    image: String
+    books: [BookReview]
+  }
+
   type Token {
     token: String
   }
 
   type Query {
     books: [Book]
+    authors: [Author]
+    author(name: String): Author
     book(id:String): Book
   }
   

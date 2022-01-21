@@ -4,12 +4,19 @@ import jwt from 'jsonwebtoken';
 import bookModel from '../models/books';
 import userModel from '../models/user';
 import dotenv from 'dotenv';
+import authorModel from "../models/author";
 dotenv.config();
 
 export const resolvers = {
     Query: {
         books: async () => {
             return await bookModel.find();
+        },
+        authors: async () => {
+            return await authorModel.find();
+        },
+        author: async (root: any, args: any) => {
+            return await authorModel.findOne({ name: args.name });
         },
         book: async (root: any, args: any) => {
             return await bookModel.findOne({ _id: args.id });
