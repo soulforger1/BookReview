@@ -11,6 +11,7 @@ type contextType = {
     firstName: string,
     lastName: string
   ) => Promise<any>;
+  logout: () => string;
 };
 const LOGIN = gql`
   mutation LogIn($email: String!, $password: String!) {
@@ -41,6 +42,7 @@ export const AuthContext = createContext<contextType>({
   token: undefined,
   login: async () => "",
   signup: async () => "",
+  logout: () => "",
 });
 
 export const AuthProvider = ({ children }: any) => {
@@ -76,7 +78,7 @@ export const AuthProvider = ({ children }: any) => {
         variables: { email, password, firstName, lastName },
       });
 
-      console.log(data)
+      console.log(data);
       setToken(data.register.token);
       Cookie.set("token", data.register.token);
 
@@ -86,8 +88,14 @@ export const AuthProvider = ({ children }: any) => {
     }
   };
 
+  const logout = () => {
+    Cookie.remove("token");
+
+    return "logged out";
+  };
+
   return (
-    <AuthContext.Provider value={{ token, login, signup }}>
+    <AuthContext.Provider value={{ token, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );

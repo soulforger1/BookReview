@@ -2,6 +2,13 @@ import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
   scalar Date
+  scalar Upload
+
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
 
   type Detail {
     title: String
@@ -58,6 +65,8 @@ export const typeDefs = gql`
   }
   
   type Mutation {
+    singleUpload(file: Upload!): File!
+
     addBook(title: String, author: String, image: String):Book
 
     updateBook(id:String, title: String, author: String, image: String):Book

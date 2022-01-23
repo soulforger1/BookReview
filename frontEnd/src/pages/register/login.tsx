@@ -12,7 +12,7 @@ const Page = () => {
 
   const submit = async () => {
     try {
-      const res = await login(email, password);
+      await login(email, password);
 
       navigate("/");
     } catch (err) {

@@ -1,5 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import { HomePage, BookDetail, Login, SignUp, AuthorDetail } from "./pages";
+import {
+  HomePage,
+  BookDetail,
+  Login,
+  SignUp,
+  AuthorDetail,
+  NewAuthor,
+} from "./pages";
 import "./styles/main.css";
 
 const App = () => {
@@ -10,6 +17,7 @@ const App = () => {
       <Route path="/author-detail/*" element={<AuthorDetail />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/new-author" element={<NewAuthor />} />
     </Routes>
   );
 };

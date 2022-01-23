@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../auth/auth-provider";
 
 const Leftbar = () => {
-  const { token } = useContext(AuthContext);
+  // const { "*": path } = useParams();
+  const { token, logout } = useContext(AuthContext);
 
   if (!token)
     return (
@@ -15,13 +16,31 @@ const Leftbar = () => {
       </Link>
     );
 
+  const logoutClicked = () => {
+    logout();
+  };
+
   return (
-    <Link
-      to="/admin"
-      className="flex justify-center items-center text-white rounded-md text-sm font-medium w-32 h-12 bg-gray-500 hover:bg-gray-400"
-    >
-      Admin
-    </Link>
+    <div className="flex">
+      <Link
+        to="/new-author"
+        className="flex justify-center items-center text-white rounded-md text-sm font-medium w-32 h-12 bg-gray-500 hover:bg-gray-400"
+      >
+        New Author
+      </Link>
+      <Link
+        to="/new-book"
+        className="flex justify-center items-center text-white rounded-md text-sm font-medium w-32 h-12 bg-gray-500 hover:bg-gray-400 mx-4"
+      >
+        New Book
+      </Link>
+      <button
+        onClick={logoutClicked}
+        className="flex justify-center items-center text-white rounded-md text-sm font-medium w-32 h-12 bg-gray-500 hover:bg-gray-400"
+      >
+        Logout
+      </button>
+    </div>
   );
 };
 

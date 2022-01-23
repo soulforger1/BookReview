@@ -28,7 +28,7 @@ const Page = () => {
       alert("password does not match");
     } else {
       try {
-        const res = await signup(
+        await signup(
           fields.email,
           fields.password,
           fields.firstName,

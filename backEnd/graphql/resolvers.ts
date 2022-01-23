@@ -1,4 +1,5 @@
 import { UserInputError, AuthenticationError } from "apollo-server-express";
+import { GraphQLUpload } from 'graphql-upload';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import bookModel from '../models/books';
@@ -8,6 +9,8 @@ import authorModel from "../models/author";
 dotenv.config();
 
 export const resolvers = {
+    Upload: GraphQLUpload,
+
     Query: {
         books: async () => {
             return await bookModel.find();
@@ -24,6 +27,11 @@ export const resolvers = {
     },
 
     Mutation: {
+        singleUpload: async (root: any, { file }: any) => {
+            const { filename, mimetype, encoding } = await file;
+
+            return { filename, mimetype, encoding };
+        },
         addBook: async (root: any, args: any) => {
             const book = new bookModel({ title: args.title, author: args.author, image: args.image, createdAt: new Date(), like: 0, comment: [] });
             await book.save();

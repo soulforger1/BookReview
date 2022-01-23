@@ -1,4 +1,5 @@
 import { ApolloServer } from 'apollo-server-express';
+import { graphqlUploadExpress } from 'graphql-upload';
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors';
@@ -41,6 +42,7 @@ const connectApollo = async () => {
     });
 
     await server.start();
+    app.use(graphqlUploadExpress());
     server.applyMiddleware({ app });
 
     app.use((req, res) => {
